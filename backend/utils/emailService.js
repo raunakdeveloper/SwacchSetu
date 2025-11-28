@@ -37,11 +37,9 @@ const wrapTemplate = (content) => {
           src="${process.env.FRONTEND_URL}/logo.jpeg"
           alt="GRS Logo"
           style="
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
+            width: 176px;
             object-fit: cover;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
           "
         />
 
@@ -97,7 +95,7 @@ const button = (url, text) => `
    1️⃣ REPORT SUBMITTED
    ========================= */
 export const reportSubmitted = async (user, report) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2 style="margin-bottom: 10px;">Report Submitted Successfully</h2>
@@ -127,7 +125,7 @@ export const reportStatusUpdated = async (user, report, newStatus) => {
     completed: 'Your reported issue has been resolved.',
   };
 
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Report Status Updated</h2>
@@ -150,7 +148,7 @@ export const reportStatusUpdated = async (user, report, newStatus) => {
    3️⃣ REPORT REJECTED
    ========================= */
 export const reportRejected = async (user, report, reason) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Report Rejected</h2>
@@ -171,7 +169,7 @@ export const reportRejected = async (user, report, reason) => {
    4️⃣ REPORT ASSIGNED TO WORKER
    ========================= */
 export const reportAssignedToWorker = async (user, report, worker) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Your Report Has Been Assigned</h2>
@@ -192,9 +190,7 @@ export const reportAssignedToWorker = async (user, report, worker) => {
    5️⃣ NEW ASSIGNMENT TO WORKER
    ========================= */
 export const newAssignmentToWorker = async (worker, report) => {
-  const link = `${process.env.FRONTEND_URL}/dashboard/worker/report/${report._id}`;
-
-  const html = wrapTemplate(`
+   const html = wrapTemplate(`
     <h2>New Work Assignment</h2>
     <p>Hello ${worker.name}, you have received a new cleaning assignment.</p>
 
@@ -203,8 +199,6 @@ export const newAssignmentToWorker = async (worker, report) => {
       <p><strong>Title:</strong> ${report.title}</p>
       <p><strong>Location:</strong> ${report.location.address}</p>
     </div>
-
-    ${button(link, "Open Assignment")}
   `);
 
   await sendMail(worker.email, `New Assignment - Issue #${report.issueId}`, html);
@@ -214,7 +208,7 @@ export const newAssignmentToWorker = async (worker, report) => {
    6️⃣ WORK IN PROGRESS
    ========================= */
 export const reportInProgress = async (user, report) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Work In Progress</h2>
@@ -235,7 +229,7 @@ export const reportInProgress = async (user, report) => {
    7️⃣ WORKER REJECTED TASK
    ========================= */
 export const reportRejectedByWorker = async (user, report, reason) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Worker Rejected the Task</h2>
@@ -256,7 +250,7 @@ export const reportRejectedByWorker = async (user, report, reason) => {
    8️⃣ REPORT COMPLETED
    ========================= */
 export const reportCompleted = async (user, report) => {
-  const link = `${process.env.FRONTEND_URL}/report/${report._id}`;
+  const link = `${process.env.FRONTEND_URL}/reports/${report._id}`;
 
   const html = wrapTemplate(`
     <h2>Issue Resolved</h2>
