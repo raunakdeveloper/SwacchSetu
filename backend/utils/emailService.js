@@ -6,15 +6,31 @@ dotenv.config();
    SEND MAIL FUNCTION
    ========================= */
 const sendMail = async (to, subject, html) => {
+  const fromName = process.env.SMTP_FROM_NAME || 'SwachhSetu';
+  const fromEmail = process.env.SMTP_USER;
   try {
-    await transporter.sendMail({
-      from: `GRS System <${process.env.SMTP_TAGLINE}>`,
+    if (!fromEmail || !process.env.SMTP_PASSWORD) {
+      console.error('❌ SMTP credentials missing. Set SMTP_USER & SMTP_PASSWORD in environment.');
+      return;
+    }
+    const info = await transporter.sendMail({
+      from: `${fromName} <${fromEmail}>`,
       to,
       subject,
       html,
     });
+    if (process.env.SMTP_DEBUG === 'true') {
+      console.log(`📤 Email queued: messageId=${info.messageId} to=${to}`);
+    }
   } catch (error) {
-    console.error(`Failed to send email to ${to}:`, error.message);
+    console.error(`❌ Failed email to ${to}:`, error.message);
+    if (error.code === 'EAUTH') {
+      console.error('   → Auth error. Use Gmail App Password (not account password).');
+    } else if (error.code === 'ESOCKET') {
+      console.error('   → Socket error. Try port 465 with SMTP_PORT=465 if persists.');
+    } else if (error.response && /Daily user sending quota/.test(error.response)) {
+      console.error('   → Gmail quota exceeded. Consider transactional email service (SendGrid/Resend).');
+    }
   }
 };
 

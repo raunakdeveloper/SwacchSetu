@@ -5,6 +5,7 @@ import Counter from '../models/Counter.js';
 import User from '../models/User.js';
 import { createTimelineEntry } from '../utils/createTimelineEntry.js';
 import * as emailService from '../utils/emailService.js';
+import { generateIssueId } from '../utils/generateId.js';
 
 const uploadToCloudinary = async (fileBuffer, folder) => {
   return new Promise((resolve, reject) => {
@@ -35,13 +36,8 @@ export const createReport = async (req, res, next) => {
 
     const imageUrl = await uploadToCloudinary(req.file.buffer, 'reports');
 
-    // Get next sequential issue id (1,2,3, ...)
-    const counter = await Counter.findOneAndUpdate(
-      { _id: 'report' },
-      { $inc: { seq: 1 } },
-      { new: true, upsert: true }
-    );
-    const issueId = String(counter.seq);
+    // Get next sequential issue id (GRS-1, GRS-2, ...)
+    const issueId = await generateIssueId();
 
     const timelineEntry = createTimelineEntry(
       'pending',
@@ -108,8 +104,19 @@ export const getReports = async (req, res, next) => {
     if (priority) filter.priority = priority;
     if (createdBy) filter.createdBy = createdBy;
     if (reportId) {
-      // Exact match on issueId (serial number)
-      filter.issueId = String(reportId).trim();
+      const idInput = String(reportId).trim();
+      if (idInput.startsWith('GRS-')) {
+        const parts = idInput.split('-');
+        if (parts.length === 2) {
+            const seqPart = parts[1];
+            filter.issueId = { $regex: `^GRS-${seqPart}(?:-[A-Z0-9]{6})?$` };
+        } else {
+          // Full format provided
+          filter.issueId = idInput;
+        }
+      } else {
+        filter.issueId = { $regex: `^(?:${idInput}|GRS-${idInput}(?:-[A-Z0-9]{6})?)$` };
+      }
     }
     if (search) {
       filter.$or = [
@@ -132,7 +139,6 @@ export const getReports = async (req, res, next) => {
     } else if (sortBy === 'title') {
       sortStage = { title: sortOrder };
     } else {
-      // default createdAt
       sortStage = { createdAt: sortOrder };
     }
 
