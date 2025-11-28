@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import RoleRoute from './RoleRoute';
 import Loader from '../components/loader';
+import Navbar from '../components/navbar';
 
 // Lazy load all pages
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -31,8 +32,10 @@ const NotFoundPage = lazy(() => import('../pages/error/NotFoundPage'));
 
 const Routing = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
+    <>
+      <Navbar />
+      <Suspense fallback={<Loader />}>
+        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
@@ -139,8 +142,9 @@ const Routing = () => {
       />
       
       <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 

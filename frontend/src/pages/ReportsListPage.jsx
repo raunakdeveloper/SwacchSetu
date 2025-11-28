@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpDown, Filter } from "lucide-react";
 import { useReport } from "../context/ReportContext";
-import Navbar from "../components/navbar";
 import ReportTable from "../components/ReportTable";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
@@ -71,9 +70,7 @@ const ReportsListPage = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="container mx-auto px-4 pt-4 pb-8">
+    <div className="container mx-auto px-4 pt-4 pb-8">
 
       {/* Heading */}
       <div className="mb-6">
@@ -136,7 +133,6 @@ const ReportsListPage = () => {
         )}
       </div>
       </div>
-    </>
   );
 };
 

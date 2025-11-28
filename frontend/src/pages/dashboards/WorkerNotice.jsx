@@ -1,6 +1,5 @@
 // src/pages/dashboards/WorkerNotice.jsx
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import Loader from '../../components/loader';
 import Pagination from '../../components/Pagination';
@@ -53,9 +52,7 @@ const WorkerNotice = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="flex">
+    <div className="flex">
         <Sidebar role="worker" />
 
       <div className="flex-1 p-8">
@@ -174,7 +171,6 @@ const WorkerNotice = () => {
         </div>
       </div>
       </div>
-    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import ReportTable from '../../components/ReportTable';
 import Modal from '../../components/Modal';
@@ -192,9 +191,7 @@ const WorkerReportManagement = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="flex">
+    <div className="flex">
         <Sidebar role="worker" />
       <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Report Management</h1>
@@ -311,7 +308,6 @@ const WorkerReportManagement = () => {
         </Modal>
       </div>
       </div>
-    </>
   );
 };
 

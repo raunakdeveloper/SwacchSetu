@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Navbar from '../components/navbar';
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -39,9 +38,7 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 page-transition">
+    <div className="flex  justify-center bg-gray-50 py-24 px-4 page-transition">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-lg shadow-md p-8 fade-in">
           <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
@@ -109,7 +106,6 @@ const LoginPage = () => {
         </div>
       </div>
       </div>
-    </>
   );
 };
 

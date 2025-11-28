@@ -119,3 +119,37 @@ export const getWorkerAnalytics = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getPublicAnalytics = async (req, res, next) => {
+  try {
+    const totalReports = await Report.countDocuments();
+
+    const statusCounts = await Report.aggregate([
+      {
+        $group: {
+          _id: '$status',
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const statusMap = {
+      pending: 0,
+      approved: 0,
+      inprogress: 0,
+      completed: 0,
+      rejected: 0,
+    };
+
+    statusCounts.forEach((item) => {
+      statusMap[item._id] = item.count;
+    });
+
+    res.json({
+      totalReports,
+      statusCounts: statusMap,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

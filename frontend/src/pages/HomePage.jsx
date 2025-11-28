@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Navbar from "../components/navbar.jsx";
 import HeroCarousel from "../components/HeroCarousel";
 import ReportCard from "../components/ReportCard";
 
@@ -34,7 +33,7 @@ const HomePage = () => {
 
     const loadStats = async () => {
       try {
-        const response = await api.get("/analytics/authority");
+        const response = await api.get("/analytics/public");
         const sc = response.data?.statusCounts || {};
 
         setStats({
@@ -54,10 +53,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      {/* Navbar */}
-      <Navbar />
-
       {/* Hero Carousel */}
       <HeroCarousel />
 

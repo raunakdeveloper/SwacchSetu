@@ -26,7 +26,7 @@ const HeroCarousel = () => {
   return (
     <div className="relative w-full flex justify-center bg-white">
       {/* Container */}
-      <div className="relative w-full max-w-screen-xl mx-auto h-[60vh] md:h-[80vh] overflow-hidden">
+      <div className="relative w-full mx-auto h-[60vh] md:h-[80vh] overflow-hidden">
 
         {/* Slides */}
         {images.map((src, index) => (

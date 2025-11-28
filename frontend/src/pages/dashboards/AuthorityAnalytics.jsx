@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import api from '../../utils/api';
 import Loader from '../../components/loader';
@@ -25,22 +24,17 @@ const AuthorityAnalytics = () => {
 
   if (loading) {
     return (
-      <>
-        <Navbar />
-        <div className="flex">
-          <Sidebar role="authority" />
-          <div className="flex-1 p-8">
-            <Loader />
-          </div>
+      <div className="flex">
+        <Sidebar role="authority" />
+        <div className="flex-1 p-8">
+          <Loader />
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="flex">
+    <div className="flex">
         <Sidebar role="authority" />
         <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Analytics</h1>
@@ -94,7 +88,6 @@ const AuthorityAnalytics = () => {
         </div>
       </div>
       </div>
-    </>
   );
 };
 

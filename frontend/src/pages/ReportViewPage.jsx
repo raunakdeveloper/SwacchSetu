@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { MapPin, ChevronUp, MessageCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useReport } from '../context/ReportContext';
-import Navbar from '../components/navbar';
 import StatusBadge from '../components/StatusBadge';
 import Timeline from '../components/Timeline';
 import MapViewer from '../components/MapViewer';
@@ -153,9 +152,7 @@ const ReportViewPage = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <div className="mb-6">
@@ -406,7 +403,6 @@ const ReportViewPage = () => {
         onClose={closeImageModal}
       />
       </div>
-    </>
   );
 };
 

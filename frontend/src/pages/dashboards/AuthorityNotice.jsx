@@ -1,6 +1,5 @@
 // src/pages/dashboards/AuthorityNotice.jsx
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import Loader from '../../components/loader';
 import Pagination from '../../components/Pagination';
@@ -159,9 +158,7 @@ const AuthorityNotice = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="flex">
+    <div className="flex">
         <Sidebar role="authority" />
         <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Notice Boards</h1>
@@ -452,7 +449,6 @@ const AuthorityNotice = () => {
         )}
       </div>
       </div>
-    </>
   );
 };
 

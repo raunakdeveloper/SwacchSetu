@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNotice } from '../context/NoticeContext';
 import { useToast } from '../components/Toast';
-import Navbar from '../components/navbar';
 import Loader from '../components/loader';
 import Pagination from '../components/Pagination';
 import { getPdfUrl, handleViewPdf, handleDownloadPdf } from '../utils/pdfHelper';
@@ -55,9 +54,7 @@ const NoticePage = () => {
   const hasNotices = notices && notices.length > 0;
 
   return (
-    <>
-      <Navbar />
-      <div className="container mx-auto px-4 pt-4 pb-8">
+    <div className="container mx-auto px-4 pt-4 pb-8">
         <h1 className="text-4xl font-bold mb-8">Notices &amp; Announcements</h1>
 
       {loading ? (
@@ -201,7 +198,6 @@ const NoticePage = () => {
         </div>
       )}
       </div>
-    </>
   );
 };
 

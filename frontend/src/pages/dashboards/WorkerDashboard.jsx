@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import { useWorker } from '../../context/WorkerContext';
 import ReportTable from '../../components/ReportTable';
@@ -39,9 +38,7 @@ const WorkerDashboard = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="flex">
+    <div className="flex">
         <Sidebar role="worker" />
       <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Worker Dashboard</h1>
@@ -93,7 +90,6 @@ const WorkerDashboard = () => {
         </div>
       </div>
       </div>
-    </>
   );
 };
 

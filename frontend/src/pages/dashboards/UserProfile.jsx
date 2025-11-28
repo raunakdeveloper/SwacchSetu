@@ -1,15 +1,12 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { formatDate } from '../../utils/formatDate';
-import Navbar from '../../components/navbar';
 
 const UserProfile = () => {
   const { user } = useAuth();
 
   return (
-    <>
-      <Navbar />
-      <div className="container mx-auto px-4 pt-4 pb-8">
+    <div className="container mx-auto px-4 pt-4 pb-8">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">My Profile</h1>
         
@@ -49,7 +46,6 @@ const UserProfile = () => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 
