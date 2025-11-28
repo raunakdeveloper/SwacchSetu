@@ -28,12 +28,8 @@ const LoginPage = () => {
     try {
       const user = await login(formData);
       
-      if (user.role === 'authority') {
-        navigate('/dashboard/authority');
-      } else if (user.role === 'worker') {
-        navigate('/dashboard/worker');
-      } else {
-        navigate('/reports');
+      if (user) {
+        navigate('/');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
