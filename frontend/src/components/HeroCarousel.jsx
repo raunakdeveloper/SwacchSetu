@@ -24,9 +24,9 @@ const HeroCarousel = () => {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <div className="relative w-full flex justify-center bg-white md:pt-20">
-      {/* Container */}
-      <div className="relative w-full mx-auto h-[60vh] md:h-[80vh] overflow-hidden">
+    <div className="relative w-full flex justify-center bg-white">
+      {/* Container fills viewport below navbar (~h-20 = 5rem) */}
+      <div className="relative w-full mx-auto h-[calc(100vh-5rem)] overflow-hidden">
 
         {/* Slides */}
         {images.map((src, index) => (
@@ -36,7 +36,7 @@ const HeroCarousel = () => {
             alt=""
             className={`
               absolute inset-0 w-full h-full
-              object-contain md:object-cover
+              object-cover
               transition-opacity duration-700
               ${index === current ? "opacity-100" : "opacity-0"}
             `}
