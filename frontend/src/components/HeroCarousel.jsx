@@ -24,7 +24,7 @@ const HeroCarousel = () => {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <div className="relative w-full flex justify-center bg-white">
+    <div className="relative w-full flex justify-center bg-white md:pt-20">
       {/* Container */}
       <div className="relative w-full mx-auto h-[60vh] md:h-[80vh] overflow-hidden">
 
